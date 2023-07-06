@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - E-Design Academy</title>
+  <style>
+    .todo-list div {
+      display: flex;
+      align-items: center;
+    }
+    .todo-list label {
+      margin-left: 10px;
+    }
+    .todo-list input[type="checkbox"]:checked + label {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .course-item {
+      display: flex;
+      align-items: center;
+    }
+    .course-thumbnail {
+      flex: 0 0 200px; /* Lebar gambar */
+      margin-right: 10px;
+      padding-bottom: 20px;
+    }
+    .course-thumbnail img {
+      width: 100%;
+      height: auto;
+    }
+    .course-info {
+      flex: 1;
+    }
+    .course-details .course-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .course-details .course-description {
+      margin-top: 5px;
+    }
+    .course-details .course-rating {
+      margin-top: 10px;
+    }
+    .course-details .course-video-link {
+      display: block;
+      margin-top: 10px;
+    }
+    .course-sidebar {
+      margin-bottom: 30px;
+    }
+    .course-sidebar .card {
+      background-color: #007bff;
+    }
+    .course-sidebar .card .user-profile {
+      display: flex;
+      align-items: center;
+    }
+    .course-sidebar .card .user-profile .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    .course-sidebar .card .user-profile .user-info {
+      margin-left: 15px;
+    }
+    .course-sidebar .card .user-profile .user-info .user-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .course-sidebar .card .user-profile .user-info .user-email {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .course-sidebar h3 {
+      margin-top: 0;
+    }
+    .course-sidebar .upcoming-tasks {
+      padding-left: 20px;
+      list-style-type: none;
+      margin-top: 10px;
+    }
+    .course-sidebar .upcoming-tasks li {
+      margin-bottom: 10px;
+    }
+    .course-sidebar .upcoming-tasks .task-title {
+      font-weight: bold;
+    }
+    .course-sidebar .upcoming-tasks .task-deadline {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .course-sidebar .todo-list {
+      margin-top: 20px;
+    }
+    .course-sidebar .todo-list div {
+      margin-bottom: 10px;
+    }
+    .course-sidebar .todo-list label {
+      margin-bottom: 0;
+    }
+    .progress-chart {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .progress-chart canvas {
+      max-width: 100%;
+    }
+    /* Warna latar belakang card menjadi biru */
+    .course-info {
+      background-color: #007bff;
+      padding: 20px;
+    }
+    .profile-avatar {
+        flex: 0 0 50px; /* Lebar gambar */
+      }
+      .rounded-avatar {
+        border-radius: 50%;
+      }
+      
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+    
+      .dropdown-menu a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+    
+      .dropdown-menu a:hover {
+        background-color: #f1f1f1;
+      }
+    
+      .profile-avatar:hover .dropdown-menu {
+        display: block;
+      }
+  </style>
+  
+  
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- ... -->
+  <link rel="stylesheet" type="text/css" href="../fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- ... -->
+
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mentor
+  * Updated: May 30 2023 with Bootstrap v5.3.0
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center"
+    
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="index.html" class="logo me-auto"><img src="assets/img/logo e-design.png" alt="" class="img-fluid"></a>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <!-- <li><a href="about.html">Tentang Kami</a></li> -->
+          
+          <li><a href="trainers.html">Mentor</a></li>
+          <li><a href="events.html">Event</a></li>
+          <li><a href="pricing.html">Paket</a></li>
+          <!-- <li><a href="contact.html">Kontak</a></li> -->
+          <li><a class="active" href="courses.html">Kursus Saya</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      
+      </nav><!-- .navbar -->
+
+      <a href="index.html" class="get-started-btn">Logout</a>
+
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="course-details" class="course-details">
+        <div class="container" data-aos="fade-up">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="tab-content">
+                <div class="tab-pane active show" id="tab-1">
+                  <h3>Kursus Saya</h3>
+                  <div class="course-list">
+                    <!-- UI/UX Designer Course -->
+                    <div class="course-item">
+                      <div class="course-thumbnail">
+                        <img src="assets/img/course-1.jpg" alt="UI/UX Designer Course">
+                      </div>
+                      <div class="course-info">
+                        <h4 class="course-title">UI/UX Designer Course</h4>
+                        <!-- <p class="course-description">Learn the fundamentals of UI/UX design and create user-centered digital experiences.</p> -->
+                        <div class="course-progress">
+                          <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <span class="text-warning font-weight-bold">On going - 70%</span>
+                        </div>
+                        <a href="dashboard_kursus1.html" class="text-end course-video-link" target="_blank">Pelajari Kursus</a>
+                      </div>
+                    </div>
+                  
+                    <!-- Product Design Course -->
+                    <div class="course-item">
+                      <div class="course-thumbnail">
+                        <img src="assets/img/course-2.jpg" alt="Product Design Course">
+                      </div>
+                      <div class="course-info">
+                        <h4 class="course-title">Product Design Course</h4>
+                        <!-- <p class="course-description">Master the skills required to design innovative and user-friendly products.</p> -->
+                        <div class="course-progress">
+                          <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <span class="text-warning font-weight-bold">On going - 80%</span>
+                        </div>
+                        <a href="dashboard_kursus2.html" class="text-end course-video-link" target="_blank">Pelajari Kursus</a>
+                      </div>
+                    </div>
+                  
+                    <!-- Graphic Design Course -->
+                    <div class="course-item">
+                      <div class="course-thumbnail">
+                        <img src="assets/img/course-3.jpg" alt="Graphic Design Course">
+                      </div>
+                      <div class="course-info">
+                        <h4 class="course-title">Graphic Design Course</h4>
+                        <!-- <p class="course-description">Explore the principles of graphic design and create visually stunning artworks.</p> -->
+                        <div class="course-progress">
+                          <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <span class="text-warning font-weight-bold">On going - 60%</span>
+                        </div>
+                        <a href="dashboard_kursus3.html" class="text-end course-video-link" target="_blank">Pelajari Kursus</a>
+                      </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="mb-5 btn btn-primary">
+                          <i class="fas fa-plus"></i> Tambah Kursus
+                        </button>
+                      </div>
+                    <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col mb-3">
+                              <h5 class="card-title">Jumlah Tugas Selesai</h5>
+                              <p class="card-text">10 Tugas</p>
+                            </div>
+                            <div class="col mb-3">
+                              <h5 class="card-title">Sertifikat Diterima</h5>
+                              <p class="card-text">5 Sertifikat</p>
+                            </div>
+                            <div class="col mb-3">
+                              <h5 class="card-title">Kursus Selesai</h5>
+                              <p class="card-text">3 Kursus</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- Jadwal Kalender dan To-Do List Course -->
+        <div class="col-lg-4">             
+            <div class="course-sidebar">
+                <h3>Ditugaskan</h3>
+                <ul class="upcoming-tasks">
+                  <li>
+                    <a href="https://drive.google.com/file/d/1DR_TTHpm3FcrfcUT3i-EC2dVRtfOnLcb/view?usp=sharing" class="task-title text-black">Kerjakan Tugas Evaluasi 1 UI/UX Designer</a>
+                    <p class="task-deadline">Deadline: 2023-06-30</p>
+                  </li>
+                  <li>
+                    <a href="https://drive.google.com/file/d/13Z4Z_1WBeqVjWWidQvwB_37W_oZUI2wP/view?usp=sharing" class="task-title text-black">Kerjakan Tugas Evaluasi 1 Product Design</a>
+                    <!-- <label class="task-title">Kerjakan Pretest Kursus Product Design</label> -->
+                    <p class="task-deadline">Deadline: 2023-07-05</p>
+                  </li>
+                  <li>
+                    <a href="https://drive.google.com/file/d/1gXzdjCG_8TccQ3kt6qEXm2iDMAWYw3Im/view?usp=sharing" class="task-title text-black">Kerjakan Tugas Evaluasi 1 Graphic Design</a>
+                    <!-- <label class="task-title">Kerjakan Pretest Kursus Graphic Design</label> -->
+                    <p class="task-deadline">Deadline: 2023-07-10</p>
+                  </li>
+                  <li>
+                    <a href="dashboard_kursus1.html" class="task-title text-black">Tonton Video Kursus UI/UX Designer</a>
+                    <!-- <label class="task-title">Kerjakan Pretest Kursus Graphic Design</label> -->
+                    <p class="task-deadline">Deadline: 2023-07-10</p>
+                  </li>
+                  <li>
+                    <a href="dashboard_kursus2.html" class="task-title text-black">Tonton Video Kursus Product Design</a>
+                    <!-- <label class="task-title">Kerjakan Pretest Kursus Graphic Design</label> -->
+                    <p class="task-deadline">Deadline: 2023-07-10</p>
+                  </li>
+                </ul>
+              </div>
+        
+            <h3>Selesai</h3>
+            <div class="todo-list">
+                <div>
+                    <input type="checkbox" id="todo1">
+                    <label for="todo1">Kerjakan Tugas Evaluasi 1 UI/UX Designer</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="todo2">
+                    <label for="todo2">Kerjakan Tugas Evaluasi 1 Product Design</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="todo3">
+                    <label for="todo3">Kerjakan Tugas Evaluasi 1 Graphic Design</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="todo3">
+                  <label for="todo3">Tonton Video Kursus UI/UX Designer</label>
+              </div>
+              <div>
+                <input type="checkbox" id="todo3">
+                <label for="todo3">Tonton Video Kursus Product Design</label>
+            </div>       
+                </div>
+            </div>
+        </div>
+    <!-- End Cource Details Tabs Section -->
+  </main><!-- End #main -->
+
+   <!-- ======= Footer ======= -->
+   <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <a href="index.html" class="logo me-auto"><img src="assets/img/logo e-design.png" alt="" class="img-fluid"></a>
+            <p>
+              Jl. Phh. Mustofa No.23, Neglasari <br>
+              Kec. Cibeunying Kaler, Kota Bandung<br>
+              Jawa Barat Indonesia 40124 <br><br>
+              <strong>Phone:</strong> +6285740000000<br>
+              <strong>Email:</strong> Edesignacademy@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Tentang Kita</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">UI UX Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Designer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Gabung sekarang</h4>
+            <p>Gabung dan berlangganan sekarang, Belajar UI UX design dengan mentor yang berpengalaman</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Berlangganan">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>E-Design Academy</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
+          Designed by <a href="https://google.com/">Kelompok 6</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- Script untuk menggambar grafik progress -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var ctx = document.getElementById("progressChart").getContext("2d");
+    var progressChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["UI/UX Design", "Product Design", "Graphic Design"],
+        datasets: [
+          {
+            label: "Progress",
+            data: [80, 60, 75], // Masukkan data progress masing-masing course di sini
+            backgroundColor: [
+              "rgba(54, 162, 235, 0.5)",
+              "rgba(255, 206, 86, 0.5)",
+              "rgba(75, 192, 192, 0.5)"
+            ],
+            borderColor: [
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              stepSize: 10
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
+<!-- Script untuk menginisialisasi Datepicker -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var datepicker = new Datepicker(document.getElementById("datepicker"), {
+      format: "dd/mm/yyyy",
+      autoclose: true
+    });
+
+    var datepickerBtn = document.getElementById("datepickerBtn");
+    datepickerBtn.addEventListener("click", function() {
+      datepicker.show();
+    });
+  });
+</script>
+<script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      menu.classList.toggle("show");
+    }
+  </script>
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "none") {
+        menu.style.display = "block";
+      } else {
+        menu.style.display = "none";
+      }
+    }
+  </script>
+
+
+  
+
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

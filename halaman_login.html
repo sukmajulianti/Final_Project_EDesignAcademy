@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <title>Halaman Login</title>
+  <style>
+    body {
+      background-color: #82b1e7;
+    }
+
+    .card-group {
+      max-width: 900px;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    .login-card {
+      background-color: rgba(255, 255, 255, 1);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-card p {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .login-card form .form-control {
+      border-radius: 5px;
+    }
+
+    .login-card form .btn {
+      border-radius: 5px;
+      padding: 10px 30px;
+    }
+
+    .login-card .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .login-card .logo img {
+      width: 70px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .image-card {
+      background-image: url('assets/img/login.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 10px;
+    }
+
+    .forgot-password {
+        text-align: left;
+        margin-left: 180px;
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card-group">
+      <div class="card login-card">
+        <div class="card-body">
+          <div class="logo">
+            <img src="assets/img/favicon.png" alt="Logo">
+            <h2>Login</h2>
+            <p>Silahkan masuk ke akun Anda!</p>
+          </div>
+
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label"></i>Alamat Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Masukkan alamat email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label"></i>Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Masukkan password">
+            </div>
+            <div class="mb-3 form-check text-left">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Ingat saya</label>
+              <span class="forgot-password"><a href="#">Lupa password?</a></span>
+            </div>
+            <div class="text mt-3">
+            <a href="dashboard_user.html" class="btn btn-primary">Login</a>
+            </div>
+            <div class="text-center mt-3">
+              <p>Login dengan:</p>
+              <a href="#" class="btn btn-danger"><i class="fab fa-google"></i> Google</a>
+              <a href="dashboard_user.html" class="btn btn-primary"><i class="fab fa-facebook"></i> Facebook</a>
+            </div>
+            <div class="signup-link">
+              <p>Belum punya akun? <a href="#">Register</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card image-card"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
