@@ -1,6 +1,7 @@
-Thanks for downloading this template!
+Final Project - E Design Academy (UI/UX Designer Babastudio)
+Kelompok 6 :
+1. Elisa
+2. Enggar N W
+3. Satrio Wibowo
+4. Sukma Julianti
 
-Template Name: Mentor
-Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
